@@ -16,11 +16,14 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        SensorManager sm = (SensorManager)this.getSystemService(Context.SENSOR_SERVICE);
-        List<Sensor>sensors = sm.getSensorList(Sensor.TYPE_ALL);
-        for (Sensor s: sensors){
-            Log.d("SENSOR","name:" + s.getName() + String.valueOf(s.getType()));
+        //     setContentView(R.layout.activity_main);
+
+        CanvasView cv = new CanvasView(this, null);
+        setContentView(cv);
+        SensorManager sm = (SensorManager) this.getSystemService(Context.SENSOR_SERVICE);
+        List<Sensor> sensors = sm.getSensorList(Sensor.TYPE_ALL);
+        for (Sensor s : sensors) {
+            Log.d("SENSOR", "name:" + s.getName() + String.valueOf(s.getType()));
         }
 
         Sensor accSensor = sm.getDefaultSensor(Sensor.TYPE_ACCELEROMETER);
@@ -30,13 +33,13 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
 
     @Override
-    public void  onSensorChanged(SensorEvent sev){
+    public void onSensorChanged(SensorEvent sev) {
         float[] val = sev.values;
-        Log.d("SENSOR","x:" + val[0] + "y:" + val[1] + "z:" + val[2]);
+        Log.d("SENSOR", "x:" + val[0] + "y:" + val[1] + "z:" + val[2]);
     }
 
     @Override
-    public void onAccuracyChanged(Sensor s,int ac){
+    public void onAccuracyChanged(Sensor s, int ac) {
 
     }
 }
